@@ -33,7 +33,7 @@ class LoadImageFromFile(object):
                  to_float32=False,
                  color_type='color',
                  file_client_args=dict(backend='disk'),
-                 imdecode_backend='cv2'):
+                 imdecode_backend='pillow'):
         self.to_float32 = to_float32
         self.color_type = color_type
         self.file_client_args = file_client_args.copy()
@@ -63,7 +63,6 @@ class LoadImageFromFile(object):
             img_bytes, flag=self.color_type, backend=self.imdecode_backend)
         if self.to_float32:
             img = img.astype(np.float32)
-
         results['filename'] = filename
         results['ori_filename'] = results['img_info']['filename']
         results['img'] = img
