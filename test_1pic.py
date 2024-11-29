@@ -101,18 +101,16 @@ model = build_dp(model, cfg.device, device_ids=cfg.gpu_ids)
 eval_kwargs = {}
 
 if __name__ == '__main__':
-    results = single_gpu_test(
-        model,
-        data_loader,
-        show=False,
-        out_dir=output_img_dir,
-        efficient_test=False,
-        opacity=0.5,
-        pre_eval=False,
-        format_only=False,
-        format_args=eval_kwargs)
+    model.eval()
+    img_show = None
+    img_show = mmcv.imresize(img_show, (2048, 512))
 
-    eval_kwargs.update(metric="mIoU")
-    metric = dataset.evaluate(results, **eval_kwargs)
-    metric_dict = dict(config=config_path, metric=metric)
-    mmcv.dump(metric_dict, json_file, indent=4)
+    result = model(return_loss=False, **data)
+
+    model.module.show_result(
+        img_show,
+        result,
+        palette=dataset.PALETTE,
+        show=True,
+        out_file=osp.join('./', img_meta['ori_filename']),
+        opacity=0.5)
