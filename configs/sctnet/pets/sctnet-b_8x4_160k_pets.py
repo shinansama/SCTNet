@@ -19,7 +19,7 @@ model = dict(
         channels=256,
         dropout_ratio=0.0,
         in_index=0,
-        num_classes=37,
+        num_classes=2,
         align_corners=False,
         loss_decode=dict(
             type='CrossEntropyLoss',
@@ -32,7 +32,7 @@ model = dict(
             channels=128,
             dropout_ratio=0.0,
             in_index=1,
-            num_classes=37,
+            num_classes=2,
             align_corners=False,
             loss_decode=dict(
                 type='CrossEntropyLoss',
@@ -47,7 +47,7 @@ model = dict(
             channels=256,
             base_channels=64,
             in_index=2,
-            num_classes=37,
+            num_classes=2,
             loss_decode=dict(type='AlignmentLoss', loss_weight=[3, 15, 15, 15]))
     ],
     train_cfg=dict(),
