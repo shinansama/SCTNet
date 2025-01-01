@@ -5,3 +5,4 @@ work_dirs
 .ipynb_checkpoints
 __pycache__/
 *.pyc
+*.mp4
