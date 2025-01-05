@@ -1,27 +1,19 @@
 #1. model config
 norm_cfg = dict(type='SyncBN', requires_grad=True)
 model = dict(
-    type='EncoderDecoder_Distill',
+    type='EncoderDecoder',
     pretrained=None,
-    backbone=dict(
-        type='SCTNet',
-        init_cfg=dict(
-            type='Normal'
-        ),
-        base_channels=32,
-        spp_channels=64),
+    backbone=dict(type='MixVisionTransformer'),
     decode_head=dict(
-        type='SCTHead',
-        in_channels=128,
+        type='SegformerHead',
+        in_channels=[64, 128, 256, 512],
+        in_index=[0, 1, 2, 3],
         channels=128,
-        dropout_ratio=0.0,
-        in_index=0,
+        dropout_ratio=0.1,
         num_classes=2,
+        norm_cfg=norm_cfg,
         align_corners=False,
-        loss_decode=dict(
-            type='CrossEntropyLoss',
-            use_sigmoid=False,
-            loss_weight=1.0)),
+        loss_decode=dict(type='CrossEntropyLoss', use_sigmoid=False, loss_weight=1.0)),
     train_cfg=dict(),
     test_cfg=dict(mode='whole'))
 

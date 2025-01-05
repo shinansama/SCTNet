@@ -1,4 +1,5 @@
 #1. model config
+checkpoint_backbone = 'pretrain/SCT-S_Pretrain.pth'
 norm_cfg = dict(type='SyncBN', requires_grad=True)
 model = dict(
     type='EncoderDecoder_Distill',
@@ -6,7 +7,8 @@ model = dict(
     backbone=dict(
         type='SCTNet',
         init_cfg=dict(
-            type='Normal'
+            type='Pretrained',
+            checkpoint= checkpoint_backbone
         ),
         base_channels=32,
         spp_channels=64),
