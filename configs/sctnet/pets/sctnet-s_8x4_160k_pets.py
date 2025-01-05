@@ -1,5 +1,5 @@
 #1. model config
-checkpoint_teacher = 'pretrain/Teacher_SegFormer_B2_ADE.pth'
+checkpoint_teacher = 'pretrain/Teacher_SegFormer_B3_PETS.pth'
 checkpoint_backbone = 'pretrain/SCT-S_Pretrain.pth'
 norm_cfg = dict(type='SyncBN', requires_grad=True)
 model = dict(
