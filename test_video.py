@@ -7,11 +7,11 @@ from tqdm import tqdm
 import time
 from mmseg.apis import init_segmentor, inference_segmentor
 
-# config_file = r"configs/sctnet/pets/sctnet-s_8x4_160k_pets.py"
-# checkpoint_file = r"work_dirs/sctnet-s_8x4_160k_pets/iter_136000.pth"
+config_file = r"configs/sctnet/pets/sctnet-s_8x4_160k_pets.py"
+checkpoint_file = r"work_dirs/sctnet-s_8x4_160k_pets2/iter_136000.pth"
 
-config_file = r"configs/sctnet/pets/sctnet-s_nt_8x4_160k_pets.py"
-checkpoint_file = r"work_dirs/sctnet-s_nt_8x4_160k_pets/latest.pth"
+# config_file = r"configs/sctnet/pets/sctnet-s_nt_8x4_160k_pets.py"
+# checkpoint_file = r"work_dirs/sctnet-s_nt_8x4_160k_pets/latest.pth"
 
 # 初始化模型
 model = init_segmentor(config_file, checkpoint_file, device='cuda:0' if torch.cuda.is_available() else 'cpu')
